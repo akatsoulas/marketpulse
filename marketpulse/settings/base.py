@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django_browserid',
     'django_nose',
     'import_export',
+    'django_countries',
 
     # Project specific apps
     '%s.auth' % PROJECT_MODULE,
@@ -162,7 +163,7 @@ AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
                            'marketpulse.auth.backend.MozilliansAuthBackend')
 
 BROWSERID_VERIFY_CLASS = 'marketpulse.auth.backend.BrowserIDVerify'
-BROWSERID_AUDIENCES = config('BROWSERID_AUDIENCES', default=None)
+BROWSERID_AUDIENCES = [config('BROWSERID_AUDIENCES', default=None)]
 LOGIN_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL_FAILURE = '/'
 

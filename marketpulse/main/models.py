@@ -31,9 +31,10 @@ class Activity(models.Model):
 class Location(LocationBase):
     """Model for contribution location."""
 
-    address = models.CharField(max_length=120)
-    shop_name = models.CharField(max_length=120, default='', blank=True)
+    address = models.CharField(max_length=120, blank=True, default='')
+    shop_name = models.CharField(max_length=120)
     link = models.URLField(max_length=500, blank=True, default='')
+    is_online = models.BooleanField(default=False)
 
 
 class Plan(models.Model):

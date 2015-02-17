@@ -61,3 +61,11 @@ fieldset legend {
         text-align: center;
     }
 }
+
+
+small.error {
+    margin: 0 0 20px 0;
+    background-color: #c00000;
+    border-color: #c00000;
+    color: #fff;
+}
