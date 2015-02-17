@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.template.defaultfilters import slugify
 
 from marketpulse.devices.models import Device
 from marketpulse.geo.models import LocationBase
@@ -9,7 +10,7 @@ class Activity(models.Model):
     """Model for activity types."""
 
     name = models.CharField(max_length=100)
-    slug = models.SlugField(blank=True, max_length=255)
+    slug = models.SlugField(unique=True, max_length=255)
 
     class Meta:
         ordering = ['name']
@@ -18,6 +19,13 @@ class Activity(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        """Custom save method."""
+
+        if not self.id:
+            self.slug = slugify(self.name)
+        super(Activity, self).save(*args, **kwargs)
 
 
 class Location(LocationBase):
